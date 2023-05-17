@@ -4,18 +4,19 @@ definePageMeta({
 });
 </script>
 <template>
-  <main class="grid min-h-screen grid-cols-2">
+  <main class="grid min-h-screen grid-cols-1 lg:grid-cols-2">
     <!--Left-->
     <div
-      class="flex-start relative flex flex-col justify-between overflow-hidden border-r border-white/10 bg-[url(~/assets/imgs/bg-stars.svg)] bg-cover px-28 py-16"
+      class="flex-start relative flex flex-col justify-between overflow-hidden border-r border-white/10 bg-[url(~/assets/imgs/bg-stars.svg)] bg-cover px-6 py-16 lg:px-28"
     >
       <!--Blur-->
+
       <div
-        class="absolute right-0 top-1/2 h-[288px] w-[526px] -translate-y-1/2 translate-x-1/2 rounded-full bg-purple-700 opacity-50 blur-full"
+        class="absolute right-0 top-1/2 h-[288px] w-[526px] -translate-x-1/2 animate-pulse rounded-full bg-purple-700 opacity-50 blur-full lg:-translate-y-1/2 lg:translate-x-1/2"
       />
 
       <!--Stripes -->
-      <div class="absolute bottom-0 right-2 top-0 w-2 bg-stripes" />
+      <div class="absolute bottom-0 right-2 top-0 w-2 rotate-0 bg-stripes" />
 
       <!--Sign In-->
       <NuxtLink class="group flex items-center gap-3 text-left">
@@ -47,7 +48,7 @@ definePageMeta({
         </div>
 
         <NuxtLink
-          class="inline-block rounded-full bg-green-500 px-5 py-3 font-alt text-sm leading-none text-black hover:bg-green-600"
+          class="inline-block rounded-full bg-green-500 px-5 py-3 font-alt text-sm font-black leading-none text-black hover:bg-green-600"
           >CADASTRAR LEMBRANÇA</NuxtLink
         >
       </div>
@@ -57,7 +58,7 @@ definePageMeta({
     </div>
     <!--Right-->
     <div
-      class="flex flex-col bg-[url(~/assets/imgs/bg-stars.svg)] bg-cover p-16"
+      class="flex flex-col bg-[url(~/assets/imgs/bg-stars.svg)] bg-cover px-6 py-16 lg:p-16"
     >
       <div class="flex flex-1 items-center justify-center">
         <p class="w-[360px] text-center leading-relaxed">
