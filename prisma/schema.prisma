@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  name      String
+  email     String    @unique
+  login     String    @unique
+  avatarUrl String    @map("avatar_url")
+  githubId  String    @unique @map("github_id")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  memories Memory[]
+
+  @@map("users")
+}
+
+model Memory {
+  id        String    @id @default(uuid())
+  coverUrl  String    @map("cover_url")
+  content   String
+  isPublic  Boolean   @default(false) @map("is_public")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@map("memories")
+}
