@@ -10,10 +10,9 @@ datasource db {
 model User {
   id        String    @id @default(uuid())
   name      String
-  email     String    @unique
   login     String    @unique
   avatarUrl String    @map("avatar_url")
-  githubId  String    @unique @map("github_id")
+  githubId  Int       @unique @map("github_id")
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
 

@@ -16,8 +16,13 @@ export default defineNuxtConfig({
       ],
     },
   },
+  routeRules: {
+    "/api/**": {
+      cors: true,
+    },
+  },
   css: ["~/assets/css/tailwind.css"],
-  modules: ["@nuxtjs/google-fonts", "nuxt-icon", "nuxt-security"],
+  modules: ["@nuxtjs/google-fonts", "nuxt-icon"],
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -39,6 +44,17 @@ export default defineNuxtConfig({
     families: {
       "Roboto+Flex": true,
       "Bai+Jamjuree": [700],
+    },
+  },
+  runtimeConfig: {
+    github: {
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    },
+    jwtSecret: process.env.JWT_SECRET,
+    public: {
+      github: {
+        clientId: process.env.GITHUB_CLIENT_ID,
+      },
     },
   },
 });

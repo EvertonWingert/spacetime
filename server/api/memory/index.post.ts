@@ -1,8 +1,10 @@
 import { z } from "zod";
 import prisma from "../../lib/prisma";
+import { useValidateJwt } from "../../utils/useValidateJwt";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
+  const user = useValidateJwt(event);
 
   const bodySchema = z.object({
     content: z.string(),
@@ -17,7 +19,7 @@ export default defineEventHandler(async (event) => {
       content,
       isPublic,
       coverUrl,
-      userId: "",
+      userId: user.id,
     },
   });
 

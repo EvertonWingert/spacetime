@@ -1,20 +1,33 @@
-import {z} from "zod";
+import { z } from "zod";
 import prisma from "../../../lib/prisma";
+import { useValidateJwt } from "../../../utils/useValidateJwt";
 
 export default defineEventHandler(async (event) => {
-    const paramsSchema = z.object({
-        id: z.string().uuid(),
-    });
+  const user = useValidateJwt(event);
 
-    const {id} = paramsSchema.parse(event.context.params);
+  const paramsSchema = z.object({
+    id: z.string().uuid(),
+  });
 
-    await prisma.memory.delete({
-        where: {
-            id,
-        }
-    })
+  const { id } = paramsSchema.parse(event.context.params);
 
-    return {
-        message: "Memory deleted successfully",
-    }
-})
+  const memory = await prisma.memory.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (memory?.userId !== user.id) {
+    throw new Error("Not found");
+  }
+
+  await prisma.memory.delete({
+    where: {
+      id,
+    },
+  });
+
+  return {
+    message: "Memory deleted successfully",
+  };
+});

@@ -1,7 +1,13 @@
 import prisma from "../../lib/prisma";
+import { useValidateJwt } from "../../utils/useValidateJwt";
 
 export default defineEventHandler(async (event) => {
+  const user = useValidateJwt(event);
+
   const memories = await prisma.memory.findMany({
+    where: {
+      userId: user.id,
+    },
     orderBy: {
       createdAt: "asc",
     },
