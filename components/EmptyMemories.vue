@@ -1,5 +1,5 @@
 <template>
-  <p class="w-[360px] text-center leading-relaxed">
+  <p class="w-[360px] text-center leading-relaxed p-16">
     Você ainda não registrou nenhuma lembrança, comece a
     <NuxtLink
       to="/memories/create"

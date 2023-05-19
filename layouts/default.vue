@@ -17,7 +17,7 @@ const auth = user();
         <!--Stripes -->
         <div class="absolute bottom-0 right-2 top-0 w-2 rotate-0 bg-stripes" />
 
-        <Profile v-if="auth"/>
+        <Profile v-if="auth" />
         <SignIn v-else />
 
         <Hero />
@@ -27,7 +27,7 @@ const auth = user();
       </div>
       <!--Right-->
       <div
-        class="flex flex-col bg-[url(~/assets/imgs/bg-stars.svg)] bg-cover px-6 py-16 lg:p-16"
+        class="flex flex-col overflow-y-scroll max-h-screen bg-[url(~/assets/imgs/bg-stars.svg)] bg-cover px-6"
       >
         <slot />
       </div>

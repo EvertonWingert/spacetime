@@ -12,10 +12,13 @@ export default defineEventHandler(async (event) => {
       createdAt: "asc",
     },
   });
-
-  return memories.map((memory) => ({
+  
+  const memoriesWithExcerpt = memories.map((memory) => ({
     id: memory.id,
     coverUrl: memory.coverUrl,
     excerpt: memory.content.substring(0, 115).concat("..."),
+    createdAt: memory.createdAt,
   }));
+
+  return memoriesWithExcerpt;
 });
