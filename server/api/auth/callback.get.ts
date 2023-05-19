@@ -74,7 +74,9 @@ export default defineEventHandler(async (event) => {
     httpOnly: true,
   });
 
-  return sendRedirect(event, "/");
+  const redirect = getCookie(event, "redirect");
+
+  return sendRedirect(event, redirect ? redirect : "/");
 });
 
 interface GitHubUser {

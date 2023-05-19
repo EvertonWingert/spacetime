@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const auth = user();
+
 </script>
 <template>
   <div
@@ -15,7 +16,7 @@ const auth = user();
       class="max-w-[140px] text-sm leading-snug transition-colors group-hover:text-gray-50"
     >
         {{auth?.name}}
-        <NuxtLink class="block text-red-400 hover:text-red-400">Quero sair</NuxtLink>
+        <NuxtLink external to="/api/auth/logout" class="block text-red-400 hover:text-red-400">Quero sair</NuxtLink>
     </p>
   </div>
 </template>

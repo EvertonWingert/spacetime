@@ -12,7 +12,7 @@
     </div>
 
     <NuxtLink
-      to="/create"
+      to="/memories/create"
       class="inline-block rounded-full bg-green-500 px-5 py-3 font-alt text-sm font-black leading-none text-black hover:bg-green-600"
       >CADASTRAR LEMBRANÇA</NuxtLink
     >
