@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-1 flex-col gap-4">
+  <div class="flex flex-1 flex-col gap-4 p-6">
     <NuxtLink
       to="/"
       class="flex items-center gap-1 text-sm text-gray-200 hover:text-gray-100"
