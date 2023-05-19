@@ -1,12 +1,14 @@
 import { randomUUID } from "node:crypto";
-import {  resolve } from "node:path";
-import {createWriteStream } from 'node:fs'
-import {Duplex, pipeline} from 'node:stream'
+import { createWriteStream, existsSync, mkdirSync } from 'node:fs';
+import { resolve } from "node:path";
+import { Duplex, pipeline } from 'node:stream';
 import { promisify } from "node:util";
 
 const pump = promisify(pipeline);
 
 export default defineEventHandler(async (event) => {
+  const user = useValidateJwt(event);
+
   const data = await readMultipartFormData(event);
   if(!data) {
     return { message: "No file uploaded" };
@@ -22,8 +24,12 @@ export default defineEventHandler(async (event) => {
   const extension =  file.filename.split('.').pop();
   const fileName = `${fileId}.${extension}`;
 
-  const writeStream =  createWriteStream(
-    resolve("./uploads", fileName)
+  if (!existsSync(resolve(`./uploads/${user.id}/`))) {
+    mkdirSync(resolve(`./uploads/${user.id}/`));
+  }
+
+  const writeStream = createWriteStream(
+    resolve(`./uploads/${user.id}/`, fileName)
   );
 
   const b = Buffer.from(file.data)
@@ -33,8 +39,7 @@ export default defineEventHandler(async (event) => {
 
   pump(read, writeStream);
 
-
-  const fileUrl = new URL(fileName, "http://localhost:3000").toString();
+  const fileUrl = `http://localhost:3000/${user.id}/${fileName}`;
 
   return {
     message: "File uploaded successfully",
