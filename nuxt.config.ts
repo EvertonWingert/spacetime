@@ -57,4 +57,11 @@ export default defineNuxtConfig({
       },
     },
   },
+  nitro: {
+    publicAssets: [
+      {
+        dir: "../uploads",
+      },
+    ],
+  },
 });
