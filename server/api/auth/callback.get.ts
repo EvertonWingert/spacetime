@@ -80,7 +80,7 @@ export default defineEventHandler(async (event) => {
 });
 
 interface GitHubUser {
-  id: string;
+  id: number;
   login: string;
   avatar_url: string;
   name: string;
